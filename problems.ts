@@ -108,6 +108,7 @@
     }
   }
   // console.log(getDayType(Day.Sunday));
+  // console.log(getDayType(Day.Monday));
 
   // *Problem 8
 
@@ -124,8 +125,4 @@
 
   // squareAsync(4).then(console.log);
   // squareAsync(-3).catch(console.error);
-
-  // *Problem 9
-
-  // *Problem 10
 }
