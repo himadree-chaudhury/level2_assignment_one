@@ -6,15 +6,15 @@ In TypeScript, both `interface` and `type` are used to define custom shapes. Whi
 
 ## Basic Syntax Comparison
 
-```typescript
+```ts
 // Interface approach
-interface User {
+interface Student {
   id: number;
   name: string;
 }
 
 // Type alias approach
-type User = {
+type Student = {
   id: number;
   name: string;
 };
@@ -26,52 +26,49 @@ type User = {
 
 **Interfaces** can be extended through declaration merging:
 
-```typescript
-interface Car {
-  make: string;
+```ts
+interface Student {
+  id: number;
 }
-interface Car {
-  model: string;
+interface Student {
+  name: string;
 }
-// Result: { make: string; model: string }
+// Result: { id: number; name: string }
 ```
 
 **Types** cannot be merged this way:
 
-```typescript
-type Car = { make: string };
-type Car = { model: string }; // Error: Duplicate identifier
+```ts
+type Student = { id: number };
+type Student = { name: string }; // Error: Duplicate identifier
 ```
 
 ### 2. Extending Other Types
 
 Both can extend others but with different syntax:
 
-```typescript
+```ts
 // Interface extending interface
-interface Admin extends User {
-  permissions: string[];
+interface Subjects extends Student {
+  subjects: string[];
 }
 
 // Type extending type
-type Admin = User & {
-  permissions: string[];
+type Subjects = Student & {
+  subjects: string[];
 };
-
-// Interface extending type
-interface SpecialAdmin extends AdminType {}
 ```
 
 ### 3. Union and Tuple Types
 
 **Types** excel here:
 
-```typescript
+```ts
 // Union type
-type Status = "active" | "inactive" | "pending";
+type Hobby = "Football" | "Cricket" | "Athletics";
 
 // Tuple type
-type Coordinates = [number, number];
+type Result = [boolean, boolean];
 ```
 
 Interfaces cannot represent these directly.
@@ -85,9 +82,9 @@ Interfaces cannot represent these directly.
 
 ### With Types:
 
-```typescript
+```ts
 // Mapped types
-type Optional<T> = {
+type Subjects<T> = {
   [P in keyof T]?: T[P];
 };
 
@@ -97,9 +94,9 @@ type NonNullable<T> = T extends null | undefined ? never : T;
 
 ### With Interfaces:
 
-```typescript
+```ts
 // Extending built-in types
-interface CustomArray extends Array<number> {
+interface Subjects extends Array<number> {
   customMethod(): void;
 }
 ```
@@ -115,7 +112,7 @@ interface CustomArray extends Array<number> {
 | Extending built-ins | ✅ Best   | ❌      |
 | Complex type logic  | ❌        | ✅ Best |
 
-**My opinion**: Use interfaces by default for objects, types for everything else.
+**Conclusion**: Use interfaces by default for objects, types for everything else.
 
 # 7. Example Using Union and Intersection Types in TypeScript
 
@@ -129,15 +126,15 @@ The "OR" operator for types. A union type represents values that can be **one of
 
 ### Basic Example
 
-```typescript
-type Status = "active" | "inactive" | "pending";
+```ts
+type Hobby = "Football" | "Cricket" | "Athletics";
 
-function setStatus(newStatus: Status) {
-  console.log(`Status changed to ${newStatus}`);
+function setHobby(hobby: Hobby) {
+  console.log(`Hobby is ${hobby}`);
 }
 
-setStatus("active"); // Valid
-setStatus("archived"); // Error: Not in the union
+setHobby("active"); // Valid
+setHobby("archived"); // Error: Not in the union
 ```
 
 ## Intersection Types (`&`)
@@ -146,45 +143,45 @@ The "AND" operator for types. Combines multiple types into one.
 
 ### Basic Example
 
-```typescript
-type Admin = {
-  name: string;
-  privileges: string[];
-};
-
-type Employee = {
+```ts
+type Student = {
   id: number;
-  startDate: Date;
+  name: string;
 };
 
-type AdminEmployee = Admin & Employee;
+type Subjects = {
+  subjects: string[];
+};
 
-const admin: AdminEmployee = {
-  name: "Jane",
-  privileges: ["delete-users"],
-  id: 123,
-  startDate: new Date(),
+type StudentDetails = Student & Subjects;
+
+const newStudent: StudentDetails = {
+  id: 96,
+  name: "Himadree Chaudhury",
+  subjects: ["Physics", "Chemistry", "Math"],
 };
 ```
 
 ## Combining Both
 
-```typescript
-type Printable = { print: () => void };
-type Scannable = { scan: () => void };
-type Flexible = { fax: () => void };
+```ts
+type Student = { id: number; name: string };
+type Group = { group: "Science" | "Commerce" | "Arts" };
+type Player = { play: string };
 
-type OfficeDevice = Printable & (Scannable | Flexible);
+type StudentDetails = Student & (Group | Player);
 
 // Valid devices:
-const printerScanner: OfficeDevice = {
-  print: () => {},
-  scan: () => {},
+const normalStudent: StudentDetails = {
+  id: 96,
+  name: "Himadree Chaudhury",
+  group: "Science",
 };
 
-const printerFax: OfficeDevice = {
-  print: () => {},
-  fax: () => {},
+const bkspStudent: OfficeDevice = {
+  id: 96,
+  name: "Himadree Chaudhury",
+  play: "Football",
 };
 ```
 
@@ -192,8 +189,8 @@ const printerFax: OfficeDevice = {
 
 ### Type Guards with Unions
 
-```typescript
-function isString(value: string | number): value is string {
+```ts
+function isString(value: string | number): boolean {
   return typeof value === "string";
 }
 
@@ -210,7 +207,7 @@ function processValue(value: string | number) {
 
 1. **Overlapping Properties**:
 
-   ```typescript
+   ```ts
    type A = { foo: number };
    type B = { foo: string };
    type C = A & B; // foo becomes 'never' (number & string)
@@ -218,18 +215,18 @@ function processValue(value: string | number) {
 
 2. **Empty Intersections**:
 
-   ```typescript
+   ```ts
    type D = string & number; // Type 'never'
    ```
 
 3. **Excessive Unions**:
 
-   ```typescript
+   ```ts
    // Avoid this when possible:
    type TooBig = string | number | boolean | object | any[];
    ```
 
-   **My Opinion**:
+   **Conclusion**:
 
    - `|` = "Either/Or"
    - `&` = "Combination of both"
