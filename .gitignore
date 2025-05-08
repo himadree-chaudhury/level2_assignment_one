@@ -1,3 +1,4 @@
 package.json
 tsconfig.json
 question.md
+.gitignore

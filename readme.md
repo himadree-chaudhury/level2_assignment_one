@@ -226,7 +226,7 @@ function processValue(value: string | number) {
    type TooBig = string | number | boolean | object | any[];
    ```
 
-   **Conclusion**:
+**Conclusion**:
 
-   - `|` = "Either/Or"
-   - `&` = "Combination of both"
+- `|` = "Either/Or"
+- `&` = "Combination of both"
