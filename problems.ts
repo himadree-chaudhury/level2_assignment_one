@@ -108,8 +108,22 @@
     }
   }
   // console.log(getDayType(Day.Sunday));
-  
+
   // *Problem 8
+
+  async function squareAsync(n: number): Promise<number> {
+    return new Promise((resolve, reject) => {
+      if (n < 0) {
+        reject(new Error("Negative numbers are not allowed"));
+      }
+      setTimeout(() => {
+        resolve(n * n);
+      }, 1000);
+    });
+  }
+
+  // squareAsync(4).then(console.log);
+  // squareAsync(-3).catch(console.error);
 
   // *Problem 9
 
