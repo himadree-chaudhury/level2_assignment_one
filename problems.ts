@@ -34,25 +34,36 @@
   //   console.log(concatenateArrays(["a", "b"], ["c"]));
 
   // *Problem 4
-  {
-    class Vehicle {
-      constructor(private make: string, private year: number) {}
 
-      getInfo(): string {
-        return `Make : ${this.make} , Year: ${this.year}`;
-      }
+  class Vehicle {
+    constructor(private make: string, private year: number) {}
+
+    getInfo(): string {
+      return `Make : ${this.make} , Year: ${this.year}`;
     }
-
-    class Car extends Vehicle {
-      constructor(make: string, year: number, private model: string) {
-        super(make, year);
-      }
-      getModel(): string {
-        return `Model : ${this.model}`;
-      }
-    }
-
-    const myCar = new Car("Toyota", 2020, "Crown");
-    // console.log(myCar.getModel());
   }
+
+  class Car extends Vehicle {
+    constructor(make: string, year: number, private model: string) {
+      super(make, year);
+    }
+    getModel(): string {
+      return `Model : ${this.model}`;
+    }
+  }
+
+  const myCar = new Car("Toyota", 2020, "Crown");
+  // console.log(myCar.getModel());
+
+  // *Problem 5
+  function processValue(value: string | number): number {
+    if (typeof value === "string") {
+      return value.length;
+    } else {
+      return value * 2;
+    }
+  }
+
+  console.log(processValue(5));
+  console.log(processValue("Himadree"));
 }
