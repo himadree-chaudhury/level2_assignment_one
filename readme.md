@@ -97,7 +97,7 @@ type NonNullable<T> = T extends null | undefined ? never : T;
 ```ts
 // Extending built-in types
 interface Subjects extends Array<number> {
-  customMethod(): void;
+  numberPerSubject(): void;
 }
 ```
 
