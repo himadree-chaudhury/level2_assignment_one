@@ -64,6 +64,27 @@
     }
   }
 
-  console.log(processValue(5));
-  console.log(processValue("Himadree"));
+  //   console.log(processValue(5));
+  //     console.log(processValue("Himadree"));
+
+  // *Problem 6
+  interface Product {
+    name: string;
+    price: number;
+  }
+
+  function getMostExpensiveProduct(products: Product[]): Product | null {
+    return products.reduce(
+      (max, product) =>
+        max === null || max.price < product.price ? product : max,
+      products[0] ?? null
+    );
+  }
+  const products = [
+    { name: "Pen", price: 10 },
+    { name: "Bag", price: 50 },
+    { name: "Notebook", price: 25 },
+  ];
+  //   console.log(getMostExpensiveProduct(products));
+  //   console.log(getMostExpensiveProduct([]));
 }
