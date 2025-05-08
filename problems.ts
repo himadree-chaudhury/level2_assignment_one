@@ -1,5 +1,5 @@
 {
-    // *Problem 1
+  // *Problem 1
   function formatString(input: string, toUpper?: boolean): string {
     if (toUpper === undefined || toUpper === true) {
       return input.toUpperCase();
@@ -25,4 +25,13 @@
     { title: "Book C", rating: 5.0 },
   ];
   // console.log(filterByRating(books));
+
+  // *Problem 3
+  function concatenateArrays<T>(...arrays: T[][]): T[] {
+    return arrays.reduce((acc, currentArray) => acc.concat(currentArray));
+  }
+
+    //   console.log(concatenateArrays(["a", "b"], ["c"]));
+    
+    
 }
