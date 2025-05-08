@@ -31,7 +31,28 @@
     return arrays.reduce((acc, currentArray) => acc.concat(currentArray));
   }
 
-    //   console.log(concatenateArrays(["a", "b"], ["c"]));
-    
-    
+  //   console.log(concatenateArrays(["a", "b"], ["c"]));
+
+  // *Problem 4
+  {
+    class Vehicle {
+      constructor(private make: string, private year: number) {}
+
+      getInfo(): string {
+        return `Make : ${this.make} , Year: ${this.year}`;
+      }
+    }
+
+    class Car extends Vehicle {
+      constructor(make: string, year: number, private model: string) {
+        super(make, year);
+      }
+      getModel(): string {
+        return `Model : ${this.model}`;
+      }
+    }
+
+    const myCar = new Car("Toyota", 2020, "Crown");
+    // console.log(myCar.getModel());
+  }
 }
